@@ -17,16 +17,26 @@
  
 }); */
 
-function calcularCuadrado() {
+function calcularParalelogramo() {
+    const baseInput = document.getElementById('txtBase');
     const ladoInput = document.getElementById('txtLado');
-    const areaInput = document.getElementById('txtA');
-    const perimetroInput = document.getElementById('txtP');
+    const alturaInput = document.getElementById('txtAltura');
+    const areaInput = document.getElementById('txtArea');
+    const perimetroInput = document.getElementById('txtPerimetro');
 
-    if (!ladoInput || !areaInput || !perimetroInput) {
+    if (!baseInput || !ladoInput || !alturaInput || !areaInput || !perimetroInput) {
         return;
     }
 
+    const base = parseFloat(baseInput.value);
     const lado = parseFloat(ladoInput.value);
+    const altura = parseFloat(alturaInput.value);
+
+    if (isNaN(base) || base <= 0) {
+        alert('Ingrese una base válida mayor a cero');
+        baseInput.focus();
+        return;
+    }
 
     if (isNaN(lado) || lado <= 0) {
         alert('Ingrese un lado válido mayor a cero');
@@ -34,14 +44,21 @@ function calcularCuadrado() {
         return;
     }
 
-    areaInput.value = (lado * lado).toFixed(2);
-    perimetroInput.value = (lado * 4).toFixed(2);
+    if (isNaN(altura) || altura <= 0) {
+        alert('Ingrese una altura válida mayor a cero');
+        alturaInput.focus();
+        return;
+    }
+
+    areaInput.value = (base * altura).toFixed(2);
+    perimetroInput.value = (2 * (base + lado)).toFixed(2);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const ladoInput = document.getElementById('txtLado');
-
-    if (ladoInput) {
-        ladoInput.addEventListener('input', calcularCuadrado);
-    }
+    ['txtBase', 'txtLado', 'txtAltura'].forEach(function (id) {
+        const input = document.getElementById(id);
+        if (input) {
+            input.addEventListener('input', calcularParalelogramo);
+        }
+    });
 });

@@ -50,7 +50,7 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
             <div class="logo-links">
                 <div class="logo">
                     <img src="../imagenes/logo.png" alt="">
-                    <h1>Matemáticas</h1>
+                    <h1>SISTEMA PARALELOGRAMO</h1>
                 </div>               
                 <a href="">Quienes somos</a>
             </div>
@@ -82,7 +82,7 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
     <main>
         <div class="datos">
             <div class="titulo">
-                <h1>Calculo del area y perimetro del cuadrado</h1>
+                <h1>Calculo del area y perimetro de un Paralelogramo</h1>
                 <p>Usuario: <?php echo htmlspecialchars($_SESSION['usuario']); ?></p>
             </div>
 

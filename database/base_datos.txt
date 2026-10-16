@@ -1,7 +1,7 @@
 -- Estructura reconstruida a partir del código PHP del proyecto.
 -- No contiene registros históricos eliminados.
-CREATE DATABASE IF NOT EXISTS `cuadrado_db2`   CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `cuadrado_db2`;
+CREATE DATABASE IF NOT EXISTS `paralelo_db`   CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `paralelo_db`;
 
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id_usuario` INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -12,10 +12,12 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   UNIQUE KEY `uq_usuario_correo` (`correo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `cuadrado` (
-  `id_cuadrado` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `paralelo` (
+  `id_paralelo` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `detalle` TEXT NULL,
   `lado` DOUBLE NOT NULL,
+  `base` DOUBLE NOT NULL,
+  `altura` DOUBLE NOT NULL,
   `area` DOUBLE NOT NULL,
   `perimetro` DOUBLE NOT NULL,
   `fecha_registro` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
