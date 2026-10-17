@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="keywords" content="paralelogramo, sistema, base de datos">
     <meta name="author" content="BC TECH">
 
-    <link rel="icon" href="../imagenes/icono.png">
+    <link rel="icon" href="../imagenes/icono21.ico">
     <link rel="stylesheet" href="../assetes/css/style.css">
 
     <title>Paralelogramo</title>
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main>
         <div class="caja">
             <form action="" method="post" id="frmLogin">
-                <img src="../imagenes/logo.png" alt="logo onstituciones">
+                <img src="../imagenes/login-matematicas.png" alt="logo onstituciones">
                 <input type="email" name="correo" id="correo" placeholder="Correo">
                 <input type="password" name="clave" id="clave" placeholder="Clave">
                 <button type="submit" id="btnIngresar">Ingesar</button>

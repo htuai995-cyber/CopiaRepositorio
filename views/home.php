@@ -41,7 +41,7 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
     <meta name="keywords" content="paralelogramo, sistema, base de datos">
     <meta name="author" content="BC TECH">
 
-    <link rel="icon" href="../imagenes/icono.png">
+    <link rel="icon" href="../imagenes/icono21.ico">
     <link rel="stylesheet" href="../assetes/css/style_home.css">
 
     <title>Paralelogramo - Principal</title>
