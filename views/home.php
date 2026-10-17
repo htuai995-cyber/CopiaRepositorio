@@ -70,7 +70,7 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
                 <ul>
                     <li><a href="home.php" aria-current="page">Inicio</a></li>
                     <li><a href="#">Nuestra historia</a></li>
-                    <li><a href="logout.php" onclick="return confirm('¿Desea cerrar sesión?');">Cerrar sesión</a></li>
+                    <li><a href="logout.php" onclick="return confirm('¿Estás seguro de que deseas cerrar sesión? Tendrás que volver a ingresar para acceder al sistema.');">Cerrar sesión</a></li>
                 </ul>
             </nav>
         </div>
