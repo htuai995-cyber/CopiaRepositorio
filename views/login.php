@@ -34,30 +34,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="author" content="BC TECH">
 
     <link rel="icon" href="../imagenes/icono21.ico">
-    <link rel="stylesheet" href="../assetes/css/style.css">
+    <link rel="stylesheet" href="../assetes/css/style.css?v=3">
 
     <title>Paralelogramo</title>
 </head>
 <body>
-    <header>
-
-    </header>
     <main>
-        <div class="caja">
-            <form action="" method="post" id="frmLogin">
-                <img src="../imagenes/login-matematicas.png" alt="logo onstituciones">
-                <input type="email" name="correo" id="correo" placeholder="Correo">
-                <input type="password" name="clave" id="clave" placeholder="Clave">
-                <button type="submit" id="btnIngresar">Ingesar</button>
-            </form>
-            <?php if ($mensaje !== '') : ?>
-                <p class="mensaje"><?php echo htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8'); ?></p>
-            <?php   endif; ?>
-        </div>
-    </main>
-    <footer>
+        <section class="caja" aria-label="Inicio de sesión">
+            <form class="login-card" action="" method="post" id="frmLogin">
+                <img class="login-ilustracion" src="../imagenes/login-matematicas.png" alt="Ilustración de fórmulas matemáticas">
+                <div class="login-contenido">
+                    <p class="login-etiqueta">BIENVENIDO</p>
+                    <h1>Sistema Paralelogramo</h1>
 
-    </footer>
-    <script src="../assetes/js/app.js"></script>
+                    <?php if ($mensaje !== '') : ?>
+                        <p class="login-error" role="alert"><?php echo htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8'); ?></p>
+                    <?php endif; ?>
+
+                    <div class="login-campo">
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" name="correo" id="correo" placeholder="nombre@correo.com"
+                            value="<?php echo htmlspecialchars($correo ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+                            autocomplete="email" required>
+                    </div>
+                    <div class="login-campo">
+                        <label for="clave">Contraseña</label>
+                        <input type="password" name="clave" id="clave" placeholder="Ingresa tu contraseña"
+                            autocomplete="current-password" required>
+                    </div>
+                    <button type="submit" id="btnIngresar">Ingresar</button>
+                </div>
+            </form>
+        </section>
+    </main>
 </body>
 </html>

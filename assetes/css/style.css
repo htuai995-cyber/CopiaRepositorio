@@ -27,9 +27,13 @@ body{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: var(--texto);
     background:
-        radial-gradient(circle at top left, rgba(179, 79, 189, 0.20), transparent 32%),
-        radial-gradient(circle at bottom right, rgba(232, 213, 239, 0.75), transparent 35%),
-        var(--fondo);
+        radial-gradient(ellipse at 14% 12%, rgba(179, 79, 189, 0.22), transparent 34%),
+        radial-gradient(ellipse at 90% 88%, rgba(128, 56, 141, 0.16), transparent 34%),
+        linear-gradient(135deg, #fbf7fc, var(--fondo));
+}
+
+main{
+    min-height: 100vh;
 }
 
 .caja{
@@ -37,95 +41,139 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 25px;
+    padding: 36px 20px;
 }
 
-.caja form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: min(430px, 92%);
-    min-height: 500px;
-    padding: 35px 30px;
+.login-card{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: min(460px, 100%);
+    overflow: hidden;
     border: 1px solid var(--borde);
-    border-radius: 28px;
-    background: rgba(255, 250, 255, 0.94);
-    box-shadow: var(--sombra);
+    border-radius: 22px;
+    background: var(--tarjeta);
+    box-shadow: 0 16px 38px rgba(75, 43, 82, 0.12);
 }
 
-form img{
-    width: 165px;
-    margin-bottom: 25px;
-    filter: drop-shadow(0 8px 12px rgba(75, 43, 82, 0.10));
-}
-
-form input{
+.login-ilustracion{
+    display: block;
     width: 100%;
-    height: 55px;
-    font-size: 20px;
-    border: 1px solid transparent;
-    background-color: var(--fondo-2);
-    color: var(--texto);
-    border-radius: 14px;
-    margin-bottom: 18px;
-    padding-left: 16px;
-    outline: none;
-    transition: 0.25s ease;
+    height: 130px;
+    object-fit: cover;
+    object-position: center 46%;
 }
 
-form input::placeholder{
+.login-contenido{
+    padding: 24px 36px 30px;
+}
+
+.login-etiqueta{
+    margin-bottom: 6px;
+    color: var(--primario-oscuro);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.login-contenido h1{
+    color: var(--texto);
+    font-size: clamp(25px, 6vw, 30px);
+    line-height: 1.15;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.login-campo{
+    margin-bottom: 17px;
+}
+
+.login-campo label{
+    display: block;
+    margin-bottom: 7px;
+    color: var(--texto);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.login-campo input{
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    outline: none;
+    background-color: #fcf9fd;
+    color: var(--texto);
+    font: inherit;
+    font-size: 16px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.login-campo input::placeholder{
     color: var(--texto-suave);
 }
 
-form input:focus{
+.login-campo input:focus{
     border-color: var(--primario);
     background-color: var(--blanco);
-    box-shadow: 0 0 0 4px rgba(179, 79, 189, 0.18);
+    box-shadow: 0 0 0 4px rgba(179, 79, 189, 0.14);
 }
 
-form button{
+.login-card button{
     width: 100%;
-    height: 55px;
+    height: 52px;
+    margin-top: 4px;
     background: linear-gradient(135deg, var(--primario), var(--primario-oscuro));
     color: var(--blanco);
     border: 0;
-    border-radius: 14px;
-    font-size: 22px;
+    border-radius: 12px;
+    font: inherit;
+    font-size: 17px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.25s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-form button:hover{
+.login-card button:hover{
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(128, 56, 141, 0.25);
 }
 
-form button:active{
+.login-card button:active{
     transform: translateY(0);
 }
 
-/* Medias para login */
-@media (max-width: 976px){
-    .caja form{
-        width: min(520px, 80%);
-    }
+.login-card button:focus-visible{
+    outline: 3px solid var(--primario-oscuro);
+    outline-offset: 3px;
+}
+
+.login-error{
+    margin: -8px 0 18px;
+    padding: 11px 13px;
+    border: 1px solid #edc4ce;
+    border-radius: 10px;
+    background: #fff2f4;
+    color: #8d3345;
+    font-size: 14px;
 }
 
 @media (max-width: 760px){
-    .caja form{
-        width: 94%;
-        padding: 28px 22px;
+    .caja{
+        padding: 20px 14px;
     }
 
-    form img{
-        width: 135px;
+    .login-card{
+        border-radius: 20px;
     }
 
-    form input,
-    form button{
-        height: 50px;
-        font-size: 18px;
+    .login-ilustracion{
+        height: 110px;
+    }
+
+    .login-contenido{
+        padding: 25px 22px 20px;
     }
 }
