@@ -1,7 +1,7 @@
 <?php
 class Database{
     private string $host= 'localhost';
-    private string $db = 'paralelo_db';
+    private string $db = 'paralelogramo_db';
     private string $user = 'root';
     private string $pass = 'sasa';
     private string $charset = 'utf8mb4';

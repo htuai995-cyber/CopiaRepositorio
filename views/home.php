@@ -1,13 +1,13 @@
 <?php
 session_start();
 require_once __DIR__ . '/../controller/AuthController.php';
-require_once __DIR__ . '/../controller/CuadradoController.php';
+require_once __DIR__ . '/../controller/ParalelogramoController.php';
 
 AuthController::verificarSesion();
 
-$cuadradoController = new CuadradoController();
+$paralelogramoController = new ParalelogramoController();
 $mensaje = $_GET['mensaje'] ?? '';
-$mensajeFormulario = $cuadradoController->procesarFormulario();
+$mensajeFormulario = $paralelogramoController->procesarFormulario();
 
 if ($mensajeFormulario !== '') {
     $mensaje = $mensajeFormulario;
@@ -17,32 +17,34 @@ $buscar = trim($_GET['buscar'] ?? '');
 $registroEditar = null;
 
 if (isset($_GET['editar'])) {
-    $registroEditar = $cuadradoController->obtenerParaEditar((int) $_GET['editar']);
+    $registroEditar = $paralelogramoController->obtenerParaEditar((int) $_GET['editar']);
 }
 
-$registros = $cuadradoController->listar($buscar);
+$registros = $paralelogramoController->listar($buscar);
 
-$idActual = $registroEditar['id_cuadrado'] ?? '';
+$idActual = $registroEditar['id_paralelogramo'] ?? '';
+$baseActual = $registroEditar['base'] ?? '';
 $ladoActual = $registroEditar['lado'] ?? '';
+$alturaActual = $registroEditar['altura'] ?? '';
 $detalleActual = $registroEditar['detalle'] ?? '';
 $areaActual = $registroEditar['area'] ?? '';
 $perimetroActual = $registroEditar['perimetro'] ?? '';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index,follow">
-    <meta name="description" content="Calculo del area y perimetro del cuadrado">
-    <meta name="keywords" content="cuadrado, sistema, base de datos">
+    <meta name="description" content="Calculo del area y perimetro del paralelogramo">
+    <meta name="keywords" content="paralelogramo, sistema, base de datos">
     <meta name="author" content="BC TECH">
 
     <link rel="icon" href="../imagenes/icono.png">
     <link rel="stylesheet" href="../assetes/css/style_home.css">
 
-    <title>cuadrado-principal</title>
+    <title>Paralelogramo - Principal</title>
 </head>
 <body>
     <header class="headeerHome">
@@ -94,12 +96,22 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
 
 
             <form action="" method="post" class="form2" id="frmFormulario">
-                <input type="hidden" name="id_cuadrado" value="<?php echo htmlspecialchars($idActual); ?>">
+                <input type="hidden" name="id_paralelogramo" value="<?php echo htmlspecialchars($idActual); ?>">
 
                 <div class="inputs">
-                    <label for="lado">Lado</label>
-                    <input class="inputHome"type="decimal" name="txtLado" id="txtLado" placeholder="Lado"
+                    <label for="txtBase">Base</label>
+                    <input class="inputHome" type="number" min="0" step="any" name="txtBase" id="txtBase" placeholder="Base"
+                     value="<?php echo htmlspecialchars($baseActual); ?>">
+                </div>
+                <div class="inputs">
+                    <label for="txtLado">Lado</label>
+                    <input class="inputHome" type="number" min="0" step="any" name="txtLado" id="txtLado" placeholder="Lado"
                      value="<?php echo htmlspecialchars($ladoActual); ?>">
+                </div>
+                <div class="inputs">
+                    <label for="txtAltura">Altura</label>
+                    <input class="inputHome" type="number" min="0" step="any" name="txtAltura" id="txtAltura" placeholder="Altura"
+                     value="<?php echo htmlspecialchars($alturaActual); ?>">
                 </div>
                 <div class="inputs">
                     <label for="comentario">Comentario</label>
@@ -107,17 +119,17 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
                     name="txtDetalle" id="txtDetalle" value="<?php echo htmlspecialchars($detalleActual); ?>">
                 </div>
                 <div class="inputs">
-                    <label for="area">Area</label>
-                    <input class="inputHome" type="text" name="txtA" id="txtA" readonly placeholder="Area"
+                    <label for="txtArea">Área</label>
+                    <input class="inputHome" type="text" name="txtArea" id="txtArea" readonly placeholder="Área"
                      value="<?php echo htmlspecialchars($areaActual); ?>">
                 </div>
                 <div class="inputs">
-                    <label for="area">Perímetro</label>
-                    <input class="inputHome" type="text" name="txtP" id="txtP" readonly placeholder="Perimetro"
+                    <label for="txtPerimetro">Perímetro</label>
+                    <input class="inputHome" type="text" name="txtPerimetro" id="txtPerimetro" readonly placeholder="Perímetro"
                      value="<?php echo htmlspecialchars($perimetroActual); ?>">
                 </div>
                 <div class="botones">
-                    <button type="button" onclick="calcularCuadrado();">Calcular</button>
+                    <button type="button" onclick="calcularParalelogramo();">Calcular</button>
                     <a class="btn-link cancelar" href="home.php">Cancelar</a>
                     <button type="submit" name="accion" value="guardar">
                         <?php echo $idActual !== '' ? 'Actualizar' : 'Guardar'; ?>
@@ -129,7 +141,7 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
             <form action="home.php" method="get" id="frmBuscar">
                 <img src="../imagenes/logo.png" alt="imagen de buscar">
                 <button type="submit">Buscar</button>
-                <input type="text" name="buscar" id="txtBuscar" placeholder="Buscar por lado"
+                <input type="text" name="buscar" id="txtBuscar" placeholder="Buscar por medidas"
                  value="<?php echo htmlspecialchars($buscar); ?>">
                 <a class="btn-link limpiar" href="home.php">Limpiar</a>
             </form>
@@ -141,7 +153,9 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>lado</th>
+                        <th>Base</th>
+                        <th>Lado</th>
+                        <th>Altura</th>
                         <th>Detalle</th>
                         <th>Area</th>
                         <th>Perimetro</th>
@@ -153,17 +167,19 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
                     <?php if (count($registros) > 0) : ?>
                         <?php foreach ($registros as $fila) : ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($fila['id_cuadrado']); ?></td>
+                                <td><?php echo htmlspecialchars($fila['id_paralelogramo']); ?></td>
+                                <td><?php echo htmlspecialchars($fila['base']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['lado']); ?></td>
+                                <td><?php echo htmlspecialchars($fila['altura']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['detalle']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['area']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['perimetro']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['fecha_registro']); ?></td>
                                 <td class="acciones">
-                                    <a class="btn-tabla editar" href="home.php?editar=<?php echo (int) $fila['id_cuadrado']; ?>">Editar</a>
+                                    <a class="btn-tabla editar" href="home.php?editar=<?php echo (int) $fila['id_paralelogramo']; ?>">Editar</a>
 
                                     <form action="" method="post" onsubmit="return confirm('¿Desea eliminar este registro?');">
-                                        <input type="hidden" name="id_cuadrado" value="<?php echo (int) $fila['id_cuadrado']; ?>">
+                                        <input type="hidden" name="id_paralelogramo" value="<?php echo (int) $fila['id_paralelogramo']; ?>">
                                         <button class="btn-tabla eliminar" type="submit" name="accion" value="eliminar">Eliminar</button>
                                     </form>
                                 </td>
@@ -171,7 +187,7 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
                         <?php endforeach; ?>
                     <?php else : ?>
                         <tr>
-                            <td colspan="7">No hay registros para mostrar.</td>
+                            <td colspan="9">No hay registros para mostrar.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>

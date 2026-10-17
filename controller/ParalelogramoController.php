@@ -1,13 +1,13 @@
 <?php
-require_once __DIR__ . '/../model/Cuadrado.php';
+require_once __DIR__ . '/../model/Paralelogramo.php';
 
-class CuadradoController
+class ParalelogramoController
 {
-    private Cuadrado $modelo;
+    private Paralelogramo $modelo;
 
     public function __construct()
     {
-        $this->modelo = new Cuadrado();
+        $this->modelo = new Paralelogramo();
     }
 
     public function procesarFormulario(): string
@@ -31,28 +31,38 @@ class CuadradoController
 
     private function guardarOActualizar(): string
     {
-        $id = (int) ($_POST['id_cuadrado'] ?? 0);
+        $id = (int) ($_POST['id_paralelogramo'] ?? 0);
         $detalle = trim($_POST['txtDetalle'] ?? '');
+        $base = trim($_POST['txtBase'] ?? '');
         $lado = trim($_POST['txtLado'] ?? '');
+        $altura = trim($_POST['txtAltura'] ?? '');
+
+        if ($base === '' || !is_numeric($base) || (float) $base <= 0) {
+            return 'Ingrese una base válida mayor a cero';
+        }
 
         if ($lado === '' || !is_numeric($lado) || (float) $lado <= 0) {
             return 'Ingrese un lado válido mayor a cero';
         }
 
+        if ($altura === '' || !is_numeric($altura) || (float) $altura <= 0) {
+            return 'Ingrese una altura válida mayor a cero';
+        }
+
         if ($id > 0) {
-            $this->modelo->actualizar($id, $detalle, (float) $lado);
+            $this->modelo->actualizar($id, $detalle, (float) $base, (float) $lado, (float) $altura);
             header('Location: home.php?mensaje=actualizado');
             exit;
         }
 
-        $this->modelo->guardar($detalle, (float) $lado);
+        $this->modelo->guardar($detalle, (float) $base, (float) $lado, (float) $altura);
         header('Location: home.php?mensaje=guardado');
         exit;
     }
 
     private function eliminar(): string
     {
-        $id = (int) ($_POST['id_cuadrado'] ?? 0);
+        $id = (int) ($_POST['id_paralelogramo'] ?? 0);
 
         if ($id <= 0) {
             return 'No se pudo eliminar el registro';
