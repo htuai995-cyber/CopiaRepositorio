@@ -17,7 +17,7 @@
  
 }); */
 
-function calcularParalelogramo() {
+function calcularParalelogramo(mostrarErrores = true) {
     const baseInput = document.getElementById('txtBase');
     const ladoInput = document.getElementById('txtLado');
     const alturaInput = document.getElementById('txtAltura');
@@ -32,21 +32,30 @@ function calcularParalelogramo() {
     const lado = parseFloat(ladoInput.value);
     const altura = parseFloat(alturaInput.value);
 
+    areaInput.value = '';
+    perimetroInput.value = '';
+
     if (isNaN(base) || base <= 0) {
-        alert('Ingrese una base válida mayor a cero');
-        baseInput.focus();
+        if (mostrarErrores) {
+            alert('Ingrese una base válida mayor a cero');
+            baseInput.focus();
+        }
         return;
     }
 
     if (isNaN(lado) || lado <= 0) {
-        alert('Ingrese un lado válido mayor a cero');
-        ladoInput.focus();
+        if (mostrarErrores) {
+            alert('Ingrese un lado válido mayor a cero');
+            ladoInput.focus();
+        }
         return;
     }
 
     if (isNaN(altura) || altura <= 0) {
-        alert('Ingrese una altura válida mayor a cero');
-        alturaInput.focus();
+        if (mostrarErrores) {
+            alert('Ingrese una altura válida mayor a cero');
+            alturaInput.focus();
+        }
         return;
     }
 
@@ -58,7 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
     ['txtBase', 'txtLado', 'txtAltura'].forEach(function (id) {
         const input = document.getElementById(id);
         if (input) {
-            input.addEventListener('input', calcularParalelogramo);
+            input.addEventListener('input', function () {
+                calcularParalelogramo(false);
+            });
         }
     });
 });
