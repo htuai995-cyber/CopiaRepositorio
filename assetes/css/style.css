@@ -1,19 +1,19 @@
 /*======================*/
-/*   Login - Pastel     */
+/*   Login - Logo       */
 /*======================*/
 :root{
-    --fondo: #f7f3ea;
-    --fondo-2: #eef7f2;
-    --tarjeta: #fffaf3;
-    --primario: #b8a7e6;
-    --primario-oscuro: #826fc0;
-    --secundario: #bdebd6;
-    --acento: #ffd6ba;
-    --texto: #3f3d56;
-    --texto-suave: #6f6a80;
-    --borde: #e3d8f2;
+    --fondo: #f8f2fa;
+    --fondo-2: #f1e8f4;
+    --tarjeta: #fffaff;
+    --primario: #b34fbd;
+    --primario-oscuro: #80388d;
+    --secundario: #e8d5ef;
+    --acento: #f4dce9;
+    --texto: #392d3d;
+    --texto-suave: #756779;
+    --borde: #e6d5eb;
     --blanco: #ffffff;
-    --sombra: 0 18px 35px rgba(63, 61, 86, 0.14);
+    --sombra: 0 18px 35px rgba(75, 43, 82, 0.14);
 }
 
 *{
@@ -27,8 +27,8 @@ body{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: var(--texto);
     background:
-        radial-gradient(circle at top left, rgba(184, 167, 230, 0.35), transparent 32%),
-        radial-gradient(circle at bottom right, rgba(189, 235, 214, 0.45), transparent 35%),
+        radial-gradient(circle at top left, rgba(179, 79, 189, 0.20), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(232, 213, 239, 0.75), transparent 35%),
         var(--fondo);
 }
 
@@ -50,14 +50,14 @@ body{
     padding: 35px 30px;
     border: 1px solid var(--borde);
     border-radius: 28px;
-    background: rgba(255, 250, 243, 0.92);
+    background: rgba(255, 250, 255, 0.94);
     box-shadow: var(--sombra);
 }
 
 form img{
     width: 165px;
     margin-bottom: 25px;
-    filter: drop-shadow(0 8px 12px rgba(63, 61, 86, 0.10));
+    filter: drop-shadow(0 8px 12px rgba(75, 43, 82, 0.10));
 }
 
 form input{
@@ -81,7 +81,7 @@ form input::placeholder{
 form input:focus{
     border-color: var(--primario);
     background-color: var(--blanco);
-    box-shadow: 0 0 0 4px rgba(184, 167, 230, 0.20);
+    box-shadow: 0 0 0 4px rgba(179, 79, 189, 0.18);
 }
 
 form button{
@@ -99,7 +99,7 @@ form button{
 
 form button:hover{
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(130, 111, 192, 0.25);
+    box-shadow: 0 10px 20px rgba(128, 56, 141, 0.25);
 }
 
 form button:active{

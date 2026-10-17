@@ -1,23 +1,23 @@
 /*======================*/
-/*   Home - Pastel      */
+/*   Home - Logo        */
 /*======================*/
 :root{
-    --fondo: #f7f3ea;
-    --fondo-2: #eef7f2;
-    --tarjeta: #fffaf3;
-    --primario: #b8a7e6;
-    --primario-oscuro: #826fc0;
-    --secundario: #bdebd6;
-    --secundario-oscuro: #78b89c;
-    --acento: #ffd6ba;
-    --acento-oscuro: #dd9a70;
-    --texto: #3f3d56;
-    --texto-suave: #6f6a80;
-    --borde: #e3d8f2;
-    --linea: #eee4d5;
+    --fondo: #f8f2fa;
+    --fondo-2: #f1e8f4;
+    --tarjeta: #fffaff;
+    --primario: #b34fbd;
+    --primario-oscuro: #80388d;
+    --secundario: #e8d5ef;
+    --secundario-oscuro: #a66bb2;
+    --acento: #f4dce9;
+    --acento-oscuro: #c77da5;
+    --texto: #392d3d;
+    --texto-suave: #756779;
+    --borde: #e6d5eb;
+    --linea: #eee3f0;
     --blanco: #ffffff;
-    --peligro: #ef9a9a;
-    --sombra: 0 16px 32px rgba(63, 61, 86, 0.12);
+    --peligro: #efaaaa;
+    --sombra: 0 16px 32px rgba(75, 43, 82, 0.12);
 }
 
 *{
@@ -31,8 +31,8 @@ body{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: var(--texto);
     background:
-        radial-gradient(circle at top left, rgba(184, 167, 230, 0.35), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(189, 235, 214, 0.45), transparent 35%),
+        radial-gradient(circle at top left, rgba(179, 79, 189, 0.20), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(232, 213, 239, 0.75), transparent 35%),
         var(--fondo);
 }
 
@@ -42,9 +42,9 @@ body{
 .headeerHome{
     width: 100%;
     min-height: 130px;
-    background: rgba(255, 250, 243, 0.92);
+    background: rgba(255, 250, 255, 0.94);
     border-bottom: 1px solid var(--linea);
-    box-shadow: 0 10px 25px rgba(63, 61, 86, 0.08);
+    box-shadow: 0 10px 25px rgba(75, 43, 82, 0.08);
 }
 
 .lineaSup{
@@ -69,7 +69,7 @@ body{
     border: 1px solid var(--borde);
     border-radius: 16px;
     background-color: var(--blanco);
-    box-shadow: 0 8px 18px rgba(63, 61, 86, 0.08);
+    box-shadow: 0 8px 18px rgba(75, 43, 82, 0.08);
     overflow: hidden;
 }
 
@@ -100,6 +100,7 @@ body{
 
 header .buscarHeader{
     display: flex;
+    width: min(400px, 100%);
 }
 
 .buscarHeader .form1{
@@ -107,69 +108,128 @@ header .buscarHeader{
     justify-content: center;
     align-items: center;
     gap: 8px;
-    border-radius: 16px;
+    border-radius: 999px;
     border: 1px solid var(--borde);
-    width: min(400px, 100%);
-    height: 64px;
-    background-color: var(--fondo-2);
-    padding: 0 12px;
+    width: 100%;
+    min-height: 54px;
+    background-color: var(--blanco);
+    padding: 5px 6px 5px 16px;
+    box-shadow: 0 6px 16px rgba(75, 43, 82, 0.07);
 }
 
-.form1 img{
-    width: 34px;
+.visualmenteOculto{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.form1 input,
+.buscar form input{
+    flex: 1;
+    min-width: 0;
+    height: 42px;
+    outline: none;
+    border-radius: 999px;
+    border: 0;
+    color: var(--texto);
+    background-color: transparent;
+    font: inherit;
+    font-size: 16px;
 }
 
 .form1 input{
-    width: 280px;
-    height: 40px;
-    outline: none;
-    border-radius: 12px;
-    padding-left: 12px;
-    border: 0;
-    color: var(--texto);
-    background-color: var(--blanco);
+    padding: 0 8px;
 }
 
-.form1 input:focus{
-    box-shadow: 0 0 0 3px rgba(184, 167, 230, 0.22);
+.form1:focus-within,
+.buscar form:focus-within{
+    border-color: var(--primario);
+    box-shadow: 0 0 0 3px rgba(179, 79, 189, 0.15);
+}
+
+.form1 button,
+.buscar form button{
+    min-width: 96px;
+    height: 42px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--primario);
+    color: var(--blanco);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.form1 button:hover,
+.buscar form button:hover{
+    background: var(--primario-oscuro);
+    transform: translateY(-1px);
 }
 
 .lineaInf{
-    background: linear-gradient(90deg, var(--secundario), var(--acento));
+    background: linear-gradient(110deg, var(--primario-oscuro), var(--primario));
     width: 100%;
-    min-height: 50px;
+    min-height: 62px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 8px 18px rgba(75, 43, 82, 0.14);
 }
 
 .menu{
+    width: min(1100px, 100%);
+    padding: 0 24px;
+}
+
+.menu ul{
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    flex-wrap: nowrap;
+    gap: 12px;
     width: 100%;
-    padding: 0 20px;
+    list-style: none;
 }
 
 .menu li{
-    width: 280px;
-    list-style: none;
-    text-align: center;
-    border-radius: 12px;
-    transition: 0.25s ease;
+    flex: 0 0 auto;
 }
 
-.menu li a{
+.menu a{
     display: block;
     text-decoration: none;
-    font-size: 20px;
-    color: var(--texto);
-    padding: 12px 10px;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: var(--blanco);
+    padding: 11px 20px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.menu li:hover{
-    background-color: rgba(255, 255, 255, 0.55);
+.menu a:hover,
+.menu a[aria-current="page"]{
+    background-color: rgba(255, 255, 255, 0.17);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.menu a:hover{
+    transform: translateY(-1px);
+}
+
+.menu a:focus-visible{
+    outline: 3px solid var(--blanco);
+    outline-offset: 3px;
 }
 
 /*======================*/
@@ -187,7 +247,7 @@ main{
 .buscar,
 .tabla{
     width: min(1100px, 90%);
-    background-color: rgba(255, 250, 243, 0.95);
+    background-color: rgba(255, 250, 255, 0.95);
     border: 1px solid var(--borde);
     border-radius: 24px;
     box-shadow: var(--sombra);
@@ -242,7 +302,7 @@ main{
 .form2 .inputs:focus-within{
     border-color: var(--primario);
     background-color: var(--blanco);
-    box-shadow: 0 0 0 4px rgba(184, 167, 230, 0.18);
+    box-shadow: 0 0 0 4px rgba(179, 79, 189, 0.16);
 }
 
 .datos .form2 .inputs label{
@@ -310,7 +370,7 @@ main{
 .botones button:hover,
 .buscar form button:hover{
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(63, 61, 86, 0.16);
+    box-shadow: 0 8px 16px rgba(75, 43, 82, 0.16);
 }
 
 /*======================*/
@@ -337,29 +397,25 @@ main{
     padding: 8px 10px;
 }
 
-.buscar form img{
-    width: 28px;
-}
-
 .buscar form button{
-    background-color: var(--primario);
-    color: var(--blanco);
+    order: 1;
 }
 
 .buscar form input{
-    width: 100%;
-    height: 38px;
-    border-radius: 12px;
-    outline: none;
-    border: 0;
-    font-size: 18px;
-    padding-left: 12px;
-    color: var(--texto);
-    background-color: var(--blanco);
+    padding: 0 12px;
 }
 
-.buscar form input:focus{
-    box-shadow: 0 0 0 3px rgba(184, 167, 230, 0.22);
+.buscar form .limpiar{
+    color: var(--primario-oscuro);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.buscar form .limpiar:hover{
+    background-color: var(--blanco);
 }
 
 /*======================*/
@@ -387,7 +443,7 @@ main{
     overflow: hidden;
     border-radius: 16px;
     background-color: var(--blanco);
-    box-shadow: 0 8px 18px rgba(63, 61, 86, 0.08);
+    box-shadow: 0 8px 18px rgba(75, 43, 82, 0.08);
 }
 
 table th,
@@ -413,7 +469,7 @@ table tbody tr:nth-child(even){
 }
 
 table tbody tr:hover{
-    background-color: #fff1df;
+    background-color: #f8edf9;
 }
 
 .tabla .botones button:nth-child(1){
@@ -439,9 +495,6 @@ table tbody tr:hover{
         width: 92%;
     }
 
-    .menu li{
-        width: 220px;
-    }
 }
 
 @media (max-width: 786px){
@@ -455,21 +508,34 @@ table tbody tr:hover{
         width: 100%;
     }
 
-    .form1 input{
-        width: 100%;
+    .buscarHeader{
+        max-width: 520px;
+    }
+
+    .buscarHeader .form1{
+        min-height: 50px;
     }
 
     .lineaInf{
-        padding: 8px 0;
+        padding: 9px 0;
     }
 
     .menu{
-        flex-direction: column;
-        gap: 4px;
+        padding: 0 12px;
     }
 
-    .menu li{
-        width: 92%;
+    .menu ul{
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 6px;
+        overflow-x: auto;
+    }
+
+    .menu a{
+        white-space: nowrap;
+        padding: 10px 14px;
+        font-size: 16px;
     }
 
     .form2 .inputs{
@@ -484,12 +550,18 @@ table tbody tr:hover{
     }
 
     .buscar form{
-        flex-direction: column;
-        align-items: stretch;
+        width: 100%;
+        gap: 6px;
     }
 
     .buscar form button{
-        width: 100%;
+        min-width: 76px;
+        padding: 0 12px;
+    }
+
+    .buscar form .limpiar{
+        padding: 8px;
+        white-space: nowrap;
     }
 
     .botones{

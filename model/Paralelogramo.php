@@ -16,11 +16,13 @@ class Paralelogramo
         if ($buscar !== '') {
             $sql = "SELECT * FROM paralelogramo
                     WHERE detalle LIKE :buscarDetalle
+                       OR CAST(id_paralelogramo AS CHAR) LIKE :buscarId
                        OR CAST(lado AS CHAR) LIKE :buscarLado
                        OR CAST(base AS CHAR) LIKE :buscarBase
                        OR CAST(altura AS CHAR) LIKE :buscarAltura
                        OR CAST(area AS CHAR) LIKE :buscarArea
                        OR CAST(perimetro AS CHAR) LIKE :buscarPerimetro
+                       OR CAST(fecha_registro AS CHAR) LIKE :buscarFecha
                     ORDER BY id_paralelogramo DESC";
             $stmt = $this->pdo->prepare($sql);
 
@@ -28,11 +30,13 @@ class Paralelogramo
 
             $stmt->execute([
                 'buscarDetalle' => $valorBuscar,
+                'buscarId' => $valorBuscar,
                 'buscarLado' => $valorBuscar,
                 'buscarBase' => $valorBuscar,
                 'buscarAltura' => $valorBuscar,
                 'buscarArea' => $valorBuscar,
                 'buscarPerimetro' => $valorBuscar,
+                'buscarFecha' => $valorBuscar,
             ]);
 
             return $stmt->fetchAll();

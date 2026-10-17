@@ -42,7 +42,7 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
     <meta name="author" content="BC TECH">
 
     <link rel="icon" href="../imagenes/icono21.ico">
-    <link rel="stylesheet" href="../assetes/css/style_home.css">
+    <link rel="stylesheet" href="../assetes/css/style_home.css?v=4">
 
     <title>Paralelogramo - Principal</title>
 </head>
@@ -56,26 +56,22 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
                 </div>               
                 <a href="">Quienes somos</a>
             </div>
-            <div class="buscarHeader" >
-                <form class="form1">
-                    <img src="../imagenes/logo.png" alt="imagen de buscar">
-                    <button type="submit">Buscar</button>
-                    <input type="text"  name="buscar" id="txtBuscar" placeholder="BUSCAR"
+            <div class="buscarHeader">
+                <form class="form1" action="home.php" method="get" role="search">
+                    <label class="visualmenteOculto" for="buscarHeader">Buscar en el historial</label>
+                    <input type="search" name="buscar" id="buscarHeader" placeholder="Buscar registros..."
                     value="<?php echo htmlspecialchars($buscar); ?>">
+                    <button type="submit">Buscar</button>
                 </form>
             </div>
         </div>
         <div class="lineaInf">
-            <nav class="menu">
-                <li>
-                    <a href="#">Inicio</a>
-                </li>
-                <li>
-                    <a href="">Nuestra hisotiria</a>
-                </li>
-                <li>
-                    <a href="logout.php" onclick="return cinfirm('desea salir?');">Cerrar seseion</a>
-                </li>
+            <nav class="menu" aria-label="Navegación principal">
+                <ul>
+                    <li><a href="home.php" aria-current="page">Inicio</a></li>
+                    <li><a href="#">Nuestra historia</a></li>
+                    <li><a href="logout.php" onclick="return confirm('¿Desea cerrar sesión?');">Cerrar sesión</a></li>
+                </ul>
             </nav>
         </div>
     </header>
@@ -138,12 +134,14 @@ $perimetroActual = $registroEditar['perimetro'] ?? '';
             </form>
         </div>
         <div class="buscar">
-            <form action="home.php" method="get" id="frmBuscar">
-                <img src="../imagenes/logo.png" alt="imagen de buscar">
+            <form action="home.php" method="get" id="frmBuscar" role="search">
+                <label class="visualmenteOculto" for="buscarHistorial">Buscar en el historial</label>
                 <button type="submit">Buscar</button>
-                <input type="text" name="buscar" id="txtBuscar" placeholder="Buscar por medidas"
+                <input type="search" name="buscar" id="buscarHistorial" placeholder="Buscar por medida, detalle, ID o fecha"
                  value="<?php echo htmlspecialchars($buscar); ?>">
-                <a class="btn-link limpiar" href="home.php">Limpiar</a>
+                <?php if ($buscar !== '') : ?>
+                    <a class="btn-link limpiar" href="home.php">Limpiar</a>
+                <?php endif; ?>
             </form>
         </div>
 
